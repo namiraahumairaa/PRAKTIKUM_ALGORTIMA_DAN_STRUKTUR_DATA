@@ -1,0 +1,32 @@
+DEKLARAASI
+struct mhs :
+    nama : string
+    nim : string
+    jurusan : string
+    program : int
+    sks : int
+bayar : array [0..1] of mhs
+var, tetap : int
+DESKRIPSI
+START
+FOR i = 0 to 1 DO
+    INPUT bayar [i].nama
+    INPUT bayar [i].nim
+    INPUT bayar [i].jurusan
+    LABEL input:
+        INPUT bayar [i].program
+        IF bayar [i].program < 1 OR bayar [i].program > 2 THEN
+            PRINT "Program tidak sesuai"
+            GOTO LABEL input
+    ENDIF
+    INPUT bayar [i].sks
+    IF bayar [i].program = 1 THEN
+        tetap = 500000
+        var = bayar [i].sks * 25000
+    ELSE
+        tetap = 750000
+         var = bayar [i].sks * 50000
+    ENDIF
+    PRINT Data Mahasiswa
+    PRINT tetap, var
+ENDFOR
