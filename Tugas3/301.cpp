@@ -41,16 +41,12 @@ int main() {
 
     int totalPasangan = 0;
 
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n / 2; i++) {
         if (i > 0 && arr[i] == arr[i - 1]) {
             continue;
         }
 
         int targetCari = x - arr[i];
-        
-        if (targetCari < arr[i]) {
-            continue;
-        }
 
         int indeksKetemu = binarySearch(arr, i + 1, n - 1, targetCari);
 
