@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -32,20 +34,42 @@ int main() {
     int n, x;
     if (!(cin >> n >> x)) return 0;
 
+    srand(time(0));
+
     int* arr = new int[n];
     for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+        bool unik;
+        int angkaAcak;
+        do {
+            unik = true;
+            angkaAcak = (rand() % (x - 1)) + 1;
+            for (int j = 0; j < i; j++) {
+                if (arr[j] == angkaAcak) {
+                    unik = false;
+                    break;
+                }
+            }
+        } while (!unik);
+        arr[i] = angkaAcak;
     }
 
+    cout << "Angka Sebelum Terurut: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
     bubbleSort(arr, n);
+
+    cout << "Angka Setelah Terurut: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 
     int totalPasangan = 0;
 
     for (int i = 0; i < n / 2; i++) {
-        if (i > 0 && arr[i] == arr[i - 1]) {
-            continue;
-        }
-
         int targetCari = x - arr[i];
 
         int indeksKetemu = binarySearch(arr, i + 1, n - 1, targetCari);
@@ -55,7 +79,7 @@ int main() {
         }
     }
 
-    cout << totalPasangan << endl;
+    cout << "Total Pasangan: " << totalPasangan << endl;
 
     delete[] arr;
     return 0;
