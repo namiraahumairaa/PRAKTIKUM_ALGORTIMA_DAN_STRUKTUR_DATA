@@ -53,7 +53,6 @@ int main() {
         arr[i] = angkaAcak;
     }
 
-    cout << "Angka Sebelum Terurut: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }
@@ -61,15 +60,13 @@ int main() {
 
     bubbleSort(arr, n);
 
-    cout << "Angka Setelah Terurut: ";
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-
     int totalPasangan = 0;
 
-    for (int i = 0; i < n / 2; i++) {
+    for (int i = 0; i < n - 1; i++) {
+        if (i > 0 && arr[i] == arr[i - 1]) {
+            continue;
+        }
+
         int targetCari = x - arr[i];
 
         int indeksKetemu = binarySearch(arr, i + 1, n - 1, targetCari);
@@ -79,7 +76,7 @@ int main() {
         }
     }
 
-    cout << "Total Pasangan: " << totalPasangan << endl;
+    cout << totalPasangan << endl;
 
     delete[] arr;
     return 0;
