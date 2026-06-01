@@ -38,18 +38,24 @@ int main() {
 
     int* arr = new int[n];
     for (int i = 0; i < n; i++) {
-        bool unik;
+        bool valid;
         int angkaAcak;
         do {
-            unik = true;
-            angkaAcak = (rand() % (x - 1)) + 1;
+            valid = true;
+            angkaAcak = (rand() % 25) + 1;
+            
+            if (angkaAcak >= x) {
+                valid = false;
+                continue;
+            }
+            
             for (int j = 0; j < i; j++) {
                 if (arr[j] == angkaAcak) {
-                    unik = false;
+                    valid = false;
                     break;
                 }
             }
-        } while (!unik);
+        } while (!valid);
         arr[i] = angkaAcak;
     }
 
