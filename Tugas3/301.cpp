@@ -34,6 +34,11 @@ int main() {
     int n, x;
     if (!(cin >> n >> x)) return 0;
 
+    if (n >= x) {
+        cout << 0 << endl;
+        return 0;
+    }
+
     srand(time(0));
 
     int* arr = new int[n];
@@ -42,12 +47,7 @@ int main() {
         int angkaAcak;
         do {
             valid = true;
-            angkaAcak = (rand() % 25) + 1;
-            
-            if (angkaAcak >= x) {
-                valid = false;
-                continue;
-            }
+            angkaAcak = (rand() % (x - 1)) + 1;
             
             for (int j = 0; j < i; j++) {
                 if (arr[j] == angkaAcak) {
