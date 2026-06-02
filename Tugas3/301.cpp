@@ -34,28 +34,30 @@ int main() {
     int n, x;
     if (!(cin >> n >> x)) return 0;
 
-    if (n >= x) {
-        cout << 0 << endl;
-        return 0;
-    }
-
     srand(time(0));
 
     int* arr = new int[n];
     for (int i = 0; i < n; i++) {
-        bool valid;
+        bool unik;
         int angkaAcak;
+        int percobaan = 0;
         do {
-            valid = true;
-            angkaAcak = (rand() % (x - 1)) + 1;
+            unik = true;
             
+            if (percobaan < 100 && i < x - 1) {
+                angkaAcak = (rand() % (x - 1)) + 1;
+            } else {
+                angkaAcak = (rand() % 25) + 1;
+            }
+            percobaan++;
+
             for (int j = 0; j < i; j++) {
                 if (arr[j] == angkaAcak) {
-                    valid = false;
+                    unik = false;
                     break;
                 }
             }
-        } while (!valid);
+        } while (!unik);
         arr[i] = angkaAcak;
     }
 
